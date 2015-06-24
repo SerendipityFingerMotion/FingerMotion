@@ -25,7 +25,7 @@ OpenCV를 [http://opencv.org/downloads.html](http://opencv.org/downloads.html)�
 사용자의 피부색을 추출하도록 원안에 대고 엔터를 누르신 후에 ....
 #Documentation
 ---
-API 작성한거 링크해야할듯
+[API 문서 참조](https://github.com/SerendipityFingerMotion/FingerMotion/blob/hyun13/api_v1.pdf)
 #Contributors
 ---
 * 팀장 이현 [(leehyun13)] [1]
