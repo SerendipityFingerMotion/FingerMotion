@@ -1,7 +1,7 @@
 #include<opencv\highgui.h>
 #include<opencv\cv.h>
 #include<string.h>
-typedef enum { DOWN, UP, LEFT, RIGHT, LEFTUP, RIGHTUP, LEFTDOWN, RIGHTDOWN, ZOOMIN, ZOOMOUT, CIRCLE  } Motion;
+typedef enum { RIGHT, RIGHTDOWN, DOWN, LEFTDOWN, LEFT, LEFTUP, UP, RIGHTUP, ZOOMIN, ZOOMOUT, CIRCLE } Motion;
 
 class Camera{
 	//CvCapture* camCapture;
@@ -94,7 +94,7 @@ public:
 };
 
 
-class Frame{
+class Pattern{
 	
 	int fingerCount;
 	int frameCount;
@@ -109,12 +109,12 @@ public:
 
 class Move{
 	//핸드 클래스를 갖고 손가락 5개 
-	Frame* frame;
+	Pattern* frame;
 	
 public:
 	Line **line;
 	void setHand(Hand *hand);
-	void setFrame(Frame *frame);
+	void setPattern(Pattern *frame);
 	int getFingerCount();
 	Motion* getMove();
 };
