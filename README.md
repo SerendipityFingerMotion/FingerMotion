@@ -3,17 +3,17 @@
 [FingerMotion](https://github.com/SerendipityFingerMotion/FingerMotion/)은 영상처리를 통해 사용자의 손을 인식하여 손가락의 움직임에 대한 패턴 인식을 하도록 도와주는 라이브러리입니다.
 #Principle
 ---
-&nbsp;영상처리의 과정에서 먼저 손의 이진 이미지를 얻음으로써 손을 인식할 수 있습니다. 좀 더 정확한 손의 이진 이미지를 얻기위해서 배경차 이미지를 얻습니다.
+&nbsp;영상처리의 과정에서 먼저 손의 이진 이미지를 얻음으로써 손을 인식할 수 있습니다. 좀 더 정확한 손의 이진 이미지를 얻기위해서 배경차 이미지를 얻습니다.<BR>
 <img src="https://github.com/SerendipityFingerMotion/FingerMotion/blob/hyun13/KakaoTalk_20150625_082842188.png" width="200" height="200"><BR> <배경과의 차이를 이용한 손 이미지 검출>
 
-추출한 피부색을 가지고 역투영을 해서 얻어낸 이진 이미지를 얻습니다.
+추출한 피부색을 가지고 역투영을 해서 얻어낸 이진 이미지를 얻습니다.<BR>
 <img src="https://github.com/SerendipityFingerMotion/FingerMotion/blob/hyun13/KakaoTalk_20150625_082829928.png" width="200" height="200"><BR> <히스토그램에 대한 색 분포 이미지>
 
 
-일반적인 피부색을 추출해내서 이진화 시킨 이미지를 얻습니다.
+일반적인 피부색을 추출해내서 이진화 시킨 이미지를 얻습니다.<BR>
 <img src="https://github.com/SerendipityFingerMotion/FingerMotion/blob/hyun13/KakaoTalk_20150625_082829928.png" width="200" height="200"><BR> <일반적인 사람의 피부색으로 검출>
 
-위의 이미지들에 대해 and 연산을 하여 결과를 얻어낸 후 마지막으로 닫힘연산을 하여 이미지를 얻습니다.
+위의 이미지들에 대해 and 연산을 하여 결과를 얻어낸 후 마지막으로 닫힘연산을 하여 이미지를 얻습니다.<BR>
 <img src="https://github.com/SerendipityFingerMotion/FingerMotion/blob/hyun13/KakaoTalk_20150625_082848138.png" width="200" height="200"><BR> <추출한 손에 대한이진 이미지>
 
 
