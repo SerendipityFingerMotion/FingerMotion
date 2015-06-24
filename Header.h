@@ -39,7 +39,7 @@ public:
 	CvConvexityDefect defectArray[100];
 	double handArea;
 	int detectFingerCount;
-	Distance distance[4];
+	//Distance distance[4];
 
 	Hand();
 	~Hand();
@@ -59,6 +59,7 @@ class ImageProcessor{
 	IplImage* backProImage;
 	IplImage* backSplitImage;
 	IplImage* handMasking;
+	IplImage* bgImage;
 	CvMemStorage* storage;
 	CvSeq* firstContour;
 public:
@@ -84,45 +85,45 @@ public:
 	void programExit();
 };
 
-
-class Distance{
-	Finger *a, *b;
-public:
-	void setFinger(Finger *x, Finger *y);
-	int getDistance();
-};
-
-
-class Frame{
-	
-	int fingerCount;
-	int frameCount;
-public:
-	Hand** hand;
-	int getFingerCount();
-	int getFrameCount();
-
-
-};
-
-
-class Move{
-	//핸드 클래스를 갖고 손가락 5개 
-	Frame* frame;
-	
-public:
-	Line **line;
-	void setHand(Hand *hand);
-	void setFrame(Frame *frame);
-	int getFingerCount();
-	Motion* getMove();
-};
-
-class Line{
-	int startInd, endInd, lineCount;
-public:
-	void setIndex(int startInd, int endInd);
-	int getStart();
-	int getEnd();
-	int getLineCount();
-};
+//
+//class Distance{
+//	Finger *a, *b;
+//public:
+//	void setFinger(Finger *x, Finger *y);
+//	int getDistance();
+//};
+//
+//
+//class Frame{
+//	
+//	int fingerCount;
+//	int frameCount;
+//public:
+//	Hand** hand;
+//	int getFingerCount();
+//	int getFrameCount();
+//
+//
+//};
+//
+//
+//class Move{
+//	//핸드 클래스를 갖고 손가락 5개 
+//	Frame* frame;
+//	
+//public:
+//	Line **line;
+//	void setHand(Hand *hand);
+//	void setFrame(Frame *frame);
+//	int getFingerCount();
+//	Motion* getMove();
+//};
+//
+//class Line{
+//	int startInd, endInd, lineCount;
+//public:
+//	void setIndex(int startInd, int endInd);
+//	int getStart();
+//	int getEnd();
+//	int getLineCount();
+//};

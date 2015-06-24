@@ -18,13 +18,13 @@ void Camera::setCamera(int deviceIndex){
 Camera::Camera(int deviceIndex, int width, int height){
 	setCamera(deviceIndex);
 	setResolution(width, height);
-	//cvSetCaptureProperty(camCapture, CV_CAP_PROP_BRIGHTNESS, 50);//160
-	//cvSetCaptureProperty(camCapture, CV_CAP_PROP_CONTRAST, 50);		//29
-	//cvSetCaptureProperty(camCapture, CV_CAP_PROP_SATURATION, 64);	//34
-	//cvSetCaptureProperty(camCapture, CV_CAP_PROP_GAIN, 70);		//100
-	//cvSetCaptureProperty(camCapture, CV_CAP_PROP_EXPOSURE,10);		//-4
-	//cvSetCaptureProperty(camCapture, CV_CAP_PROP_WHITE_BALANCE_U, 1200);//6820
-	
+	cvSetCaptureProperty(camCapture, CV_CAP_PROP_BRIGHTNESS, 125);//160
+	cvSetCaptureProperty(camCapture, CV_CAP_PROP_CONTRAST, 29);      //29
+	cvSetCaptureProperty(camCapture, CV_CAP_PROP_SATURATION, 34);   //34
+	cvSetCaptureProperty(camCapture, CV_CAP_PROP_GAIN, 60);      //100
+	cvSetCaptureProperty(camCapture, CV_CAP_PROP_EXPOSURE, -4);      //-4
+	cvSetCaptureProperty(camCapture, CV_CAP_PROP_WHITE_BALANCE_U, 6820);//6820
+
 }
 IplImage* Camera::getQueryFrame(){
 	return cvQueryFrame(this->camCapture);
