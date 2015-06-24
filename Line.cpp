@@ -9,9 +9,10 @@ int Line::getStart(){
 	return this->startInd;
 }
 
-int Line::getLineCount(){
-	return this->lineCount;
-}
+//int Line::getLineCount(){
+//    return this->lineCount;
+//}
+
 int Line::getEnd(){
 	return this->endInd;
 }

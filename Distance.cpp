@@ -10,8 +10,8 @@ int Distance::getDistance(){
 
 	colX = firstFingerx - secondFingerx;
 	colY = firstFingery - secondFingery;
-	if (colX < 0) colX*(-1);
-	if (colY < 0) colY*(-1);
+	if (colX < 0) colX*=(-1);
+	if (colY < 0) colY*=(-1);
 
 	return colX + colY;
 }

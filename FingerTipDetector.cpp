@@ -17,7 +17,16 @@ void FingerTipDetector::programRun(){
 	bool backImage = false;
 	bool detect = false;
 	bool hist = false;
+	bool patternStart = false;
+	bool testStart = false;
+
 	int frameCount = 0;
+	int patternCount = 0;
+	Move testMove;
+	Move move;
+	Pattern *pattern = new Pattern();
+	Pattern *testPattern = new Pattern();
+
 	while (1){
 		frame = this->camera->getQueryFrame();
 		if (!frame)
@@ -36,13 +45,53 @@ void FingerTipDetector::programRun(){
 				hist = true;
 			}
 			imageProcessor->detectFingerTip(dstImage, userHand);
+			if (patternStart){
+				//pattern->hand[patternCount] = new Hand();
+				pattern->hand[patternCount++] = userHand;
+				//std::cout << patternCount << std::endl;
+				//    std::cout << patternCount << " : " <<pattern->hand[patternCount - 1]->finger[0]->fingerTip.x << "," << pattern->hand[patternCount - 1]->finger[0]->fingerTip.y << std::endl;
+			}
+			if (testStart){
+				testPattern->hand[patternCount++] = userHand;
+			}
 
 		}
+		userHand = new Hand();
+
 		char key = cvWaitKey(30);
 		if (key == 13)
 			detect = true;
 		else if (key == 27)
 			break;
+		else if (key == 32){
+			if (!patternStart)
+				patternStart = true;
+			else{
+				patternStart = false;
+				pattern->setFrameCount(patternCount);
+				move.setPattern(pattern);
+				move.mPattern = move.getMove(move.mPattern);
+				patternCount = 0;
+			}
+		}
+		else if (key == 49){
+			if (!testStart)
+				testStart = true;
+			else{
+				testStart = false;
+				testPattern->setFrameCount(patternCount);
+				testMove.setPattern(testPattern);
+				testMove.mPattern = testMove.getMove(testMove.mPattern);
+				if (testMove.getPatternCompar(move.mPattern, move.getLineCount())){
+					std::cout << "¸ÂÀ½";
+				}
+				else{
+					std::cout << "no";
+				}
+				patternCount = 0;
+			}
+		}
+
 		cvShowImage("Program", dstImage);
 		frameCount++;
 	}
