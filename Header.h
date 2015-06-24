@@ -29,6 +29,13 @@ public:
 	void setLocation(int x, int y);
 };
 
+class Distance{
+	Finger *a, *b;
+public:
+	void setFinger(Finger *x, Finger *y);
+	int getDistance();
+};
+
 class Hand{
 public:
 	Finger* finger[5];
@@ -85,40 +92,6 @@ public:
 	void programExit();
 };
 
-
-class Distance{
-	Finger *a, *b;
-public:
-	void setFinger(Finger *x, Finger *y);
-	int getDistance();
-};
-
-
-class Pattern{
-	
-	int fingerCount;
-	int frameCount;
-public:
-	Hand** hand;
-	int getFingerCount();
-	int getFrameCount();
-
-
-};
-
-
-class Move{
-	//핸드 클래스를 갖고 손가락 5개 
-	Pattern* frame;
-	
-public:
-	Line **line;
-	void setHand(Hand *hand);
-	void setPattern(Pattern *frame);
-	int getFingerCount();
-	Motion* getMove();
-};
-
 class Line{
 	int startInd, endInd;
 public:
@@ -127,3 +100,38 @@ public:
 	int getEnd();
 
 };
+
+
+class Pattern{
+	
+	int fingerCount;
+	int frameCount;
+	
+public:
+	Hand* hand[1000];
+	int getFingerCount();
+	int getFrameCount();
+	void setFingerCount(int count);
+	void setFrameCount(int count);
+	
+
+};
+
+
+class Move{
+	//핸드 클래스를 갖고 손가락 5개 
+	Pattern* frame;
+	int lineCount;
+public:
+	Motion *mPattern;
+	Line* line[1000];
+	void setHand(Hand *hand);
+	void setPattern(Pattern *frame);
+	int getFingerCount();
+	Motion* getMove(Motion *motion);
+	void setMotion(Motion* pattern);
+	bool getPatternCompar(Motion *target, int lineCount);
+	void setLineCount(int count);
+	int getLineCount();
+};
+
