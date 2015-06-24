@@ -131,6 +131,7 @@ void ImageProcessor::determineSingleHandFingerTip(Hand* userHand){
 					break;
 				}
 		userHand->detectFingerCount++;
+		userHand->setFingerDistance();
 	}
 	memset(decendingOrder, 0, 100);
 }
