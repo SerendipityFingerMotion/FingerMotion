@@ -104,8 +104,19 @@ Motion* Move::getMove(Motion *motion){
 	int fingerCount = this->frame->hand[0]->detectFingerCount;
 	int frameCount = this->frame->getFrameCount();
 	int lineCount = 0;
+	int zoomCheck[4];
 	double sumAtan = 0;
-
+	for (int i = 0; i < 4; i++){
+		zoomCheck[i] = this->frame->hand[frameCount - 1]->finDistan[i] - this->frame->hand[0]->finDistan[i];
+		if (zoomCheck[i]>5){
+			motion = (Motion*)malloc(sizeof(Motion));
+			*motion = ZOOMIN;
+		}
+		else if (zoomCheck[i] < (-5)){
+			motion = (Motion*)malloc(sizeof(Motion));
+			*motion = ZOOMOUT;
+		}
+	}
 
 	for (int i = 0; i < frameCount - 1; i++){
 		for (int j = i; j < frameCount - 1; j++){

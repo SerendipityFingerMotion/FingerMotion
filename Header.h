@@ -39,6 +39,9 @@ public:
 
 class Hand{
 public:
+	int finDistan[4];
+	int meanFingerX;
+	int meanFingerY;
 	Finger* finger[5];
 	CvSeq* hull;
 	CvSeq* defect;
@@ -51,6 +54,7 @@ public:
 
 	Hand();
 	~Hand();
+	void setMeanFinger();
 	void getHandDefect();
 	void arrayMemSet();
 	void convertArray();

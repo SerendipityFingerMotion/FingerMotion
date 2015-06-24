@@ -1,6 +1,25 @@
 #include"Header.h"
 CvHistogram* FingerTipDetector::pHist;
 IplImage* FingerTipDetector::bgImage;
+
+char getEnum(Motion m){
+	switch (m){
+	case RIGHT: return 'a';
+	case RIGHTDOWN: return 'b';
+	case DOWN: return 'c';
+	case LEFTDOWN: return 'd';
+	case LEFT: return 'e';
+	case LEFTUP: return 'f';
+	case UP: return 'g';
+	case RIGHTUP: return 'h';
+	case ZOOMIN: return 'i';
+	case ZOOMOUT: return 'j';
+	case CIRCLE: return 'k';
+
+	}
+}
+
+
 void FingerTipDetector::programSetUp(){
 	this->camera = new Camera(1, 640, 480);
 	
@@ -47,7 +66,9 @@ void FingerTipDetector::programRun(){
 			imageProcessor->detectFingerTip(dstImage, userHand);
 			if (patternStart){
 				//pattern->hand[patternCount] = new Hand();
+				userHand->setMeanFinger();
 				pattern->hand[patternCount++] = userHand;
+				
 				//std::cout << patternCount << std::endl;
 				//    std::cout << patternCount << " : " <<pattern->hand[patternCount - 1]->finger[0]->fingerTip.x << "," << pattern->hand[patternCount - 1]->finger[0]->fingerTip.y << std::endl;
 			}
@@ -83,10 +104,10 @@ void FingerTipDetector::programRun(){
 				testMove.setPattern(testPattern);
 				testMove.mPattern = testMove.getMove(testMove.mPattern);
 				if (testMove.getPatternCompar(move.mPattern, move.getLineCount())){
-					std::cout << "¸ÂÀ½";
+					std::cout << "match";
 				}
 				else{
-					std::cout << "no";
+					std::cout << "nomatch";
 				}
 				patternCount = 0;
 			}
@@ -107,3 +128,4 @@ void FingerTipDetector::programExit(){
 	cvReleaseImage(&bgImage);
 	delete this;
 }
+

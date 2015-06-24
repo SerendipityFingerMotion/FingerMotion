@@ -29,7 +29,25 @@ int Hand::getDefectTotal(){
 void Hand::setFingerDistance(){
 	for (int i = 0; i < (this->detectFingerCount)-1; i++){
 		distance[i].setFinger(finger[i], finger[i + 1]);
+		finDistan[i] = distance[i].getDistance();
 	}
+}
+void Hand::setMeanFinger(){
+	int sumX=0, sumY=0;
+	int checkX = 0;
+	int checkY = 0;
+	for (int i = 0; i < 5; i++){
+		if (this->finger[i]->fingerTip.x != 0){
+			sumX += this->finger[i]->fingerTip.x;
+			checkX++;
+		}
+		if (this->finger[i]->fingerTip.y != 0){
+			sumY += this->finger[i]->fingerTip.y;
+			checkY++;
+		}
+	}
+	this->meanFingerX = sumX / checkX;
+	this->meanFingerY = sumY / checkY;
 }
 Hand::~Hand(){
 	cvReleaseMemStorage(&this->handMemStorage);
