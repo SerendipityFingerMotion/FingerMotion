@@ -26,14 +26,7 @@ int Hand::getDefectTotal(){
 	return this->defect->total;
 }
 
-void Hand::setFingerDistance(){
-	for (int i = 0; i < (this->detectFingerCount)-1; i++){
-		distance[i].setFinger(finger[i], finger[i + 1]);
-	}
-}
 Hand::~Hand(){
 	cvReleaseMemStorage(&this->handMemStorage);
-	//for(int i =0 ; i < 5 ; i++)
-	//	delete this->finger[i];
 
 }

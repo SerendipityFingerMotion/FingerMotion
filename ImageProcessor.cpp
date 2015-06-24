@@ -1,4 +1,5 @@
 #include"Header.h"
+FILE *f = fopen("vector_data.txt","w");
 ImageProcessor::ImageProcessor(){
 	CvSize size = cvSize(640, 480);
 	this->transImage = cvCreateImage(size, IPL_DEPTH_8U, 3);
@@ -9,7 +10,10 @@ ImageProcessor::ImageProcessor(){
 	this->bgImage = cvCreateImage(size, IPL_DEPTH_8U, 3);
 	this->storage = cvCreateMemStorage(0);
 	this->firstContour = NULL;
-
+	this->drawImage = cvCreateImage(size, IPL_DEPTH_8U, 3);
+	this->patternImage = cvLoadImage("pattern.jpg");
+	cvZero(drawImage);
+	cvNot(drawImage, drawImage);
 }
 ImageProcessor::~ImageProcessor(){
 	cvReleaseImage(&transImage);
@@ -55,7 +59,6 @@ void ImageProcessor::detectFingerTip(IplImage* srcImage, Hand* userHand){
 	double maxArea = 0, area;
 	firstContour = NULL;
 	getHandBinaryImage(srcImage);
-
 	if (cvFindContours(backProImage, storage, &firstContour, sizeof(CvContour), CV_RETR_TREE)> 0){
 		for (CvSeq* c = firstContour; c != NULL; c = c->h_next){
 			area = cvContourArea(c, CV_WHOLE_SEQ);
@@ -131,7 +134,30 @@ void ImageProcessor::determineSingleHandFingerTip(Hand* userHand){
 					break;
 				}
 		userHand->detectFingerCount++;
-		userHand->setFingerDistance();
 	}
 	memset(decendingOrder, 0, 100);
+}
+void ImageProcessor::drawPattern(IplImage* srcImage, Hand* userHand){
+	for(int i = 0 ; i < userHand->detectFingerCount ; i++)
+		cvCircle(drawImage,  userHand->finger[1]->fingerTip, 3, CV_RGB(0, 0, 0), 5);
+	cvCopy(drawImage, drawImage);
+	cvShowImage("Pattern", drawImage);
+
+}
+void ImageProcessor::matchPattern(){
+	double min, max;
+	CvPoint left_top;
+	IplImage* matchPattern = cvCreateImage(cvSize(patternImage->width - drawImage->width + 1, patternImage->height - drawImage->height + 1), IPL_DEPTH_32F, 1);
+	
+	cvMatchTemplate(patternImage, drawImage, matchPattern, CV_TM_CCOEFF_NORMED);
+	cvShowImage("mat", matchPattern);
+	cvMinMaxLoc(matchPattern, &min, &max, NULL, &left_top);
+
+	cvRectangle(patternImage, left_top, cvPoint(left_top.x + drawImage->width, left_top.y + drawImage->height), CV_RGB(0, 255, 0), 2);
+	//cvCircle(patternImage, left_top, 10, CV_RGB(255, 0, 0), 10); 
+	cvShowImage("pattern22", patternImage);
+	
+	cvShowImage("Pattern", drawImage);
+
+
 }

@@ -1,7 +1,5 @@
 #include<opencv\highgui.h>
 #include<opencv\cv.h>
-#include<string.h>
-typedef enum { RIGHT, RIGHTDOWN, DOWN, LEFTDOWN, LEFT, LEFTUP, UP, RIGHTUP, ZOOMIN, ZOOMOUT, CIRCLE } Motion;
 
 class Camera{
 	//CvCapture* camCapture;
@@ -15,12 +13,11 @@ public:
 	~Camera();
 	IplImage* getQueryFrame();
 	CvCapture* camCapture; //
+	
 	//Video Test
 	Camera(char* fileName, int width, int height);
 	void setVideo(char* fileName);
 };
-
-
 
 class Finger{
 public:
@@ -28,6 +25,7 @@ public:
 	Finger();
 	void setLocation(int x, int y);
 };
+
 
 class Hand{
 public:
@@ -39,7 +37,6 @@ public:
 	CvConvexityDefect defectArray[100];
 	double handArea;
 	int detectFingerCount;
-	Distance distance[4];
 
 	Hand();
 	~Hand();
@@ -47,9 +44,6 @@ public:
 	void arrayMemSet();
 	void convertArray();
 	int getDefectTotal();
-	
-
-	void setFingerDistance();
 
 };
 
@@ -60,6 +54,8 @@ class ImageProcessor{
 	IplImage* backSplitImage;
 	IplImage* handMasking;
 	IplImage* bgImage;
+	IplImage* drawImage;
+	IplImage* patternImage;
 	CvMemStorage* storage;
 	CvSeq* firstContour;
 public:
@@ -69,6 +65,8 @@ public:
 	void getHandBinaryImage(IplImage* srcImage);
 	void detectFingerTip(IplImage* srcImage, Hand* userHnad);
 	void determineSingleHandFingerTip(Hand* userHand);
+	void drawPattern(IplImage* srcImage, Hand* userHand);
+	void matchPattern();
 };
 
 
@@ -85,45 +83,3 @@ public:
 	void programExit();
 };
 
-
-class Distance{
-	Finger *a, *b;
-public:
-	void setFinger(Finger *x, Finger *y);
-	int getDistance();
-};
-
-
-class Pattern{
-	
-	int fingerCount;
-	int frameCount;
-public:
-	Hand** hand;
-	int getFingerCount();
-	int getFrameCount();
-
-
-};
-
-
-class Move{
-	//핸드 클래스를 갖고 손가락 5개 
-	Pattern* frame;
-	
-public:
-	Line **line;
-	void setHand(Hand *hand);
-	void setPattern(Pattern *frame);
-	int getFingerCount();
-	Motion* getMove();
-};
-
-class Line{
-	int startInd, endInd;
-public:
-	void setIndex(int startInd, int endInd);
-	int getStart();
-	int getEnd();
-
-};
