@@ -1,23 +1,6 @@
 # FingerMotion
 ---
 [FingerMotion](https://github.com/SerendipityFingerMotion/FingerMotion/)은 영상처리를 통해 사용자의 손을 인식하여 손가락의 움직임에 대한 패턴 인식을 하도록 도와주는 라이브러리입니다.
-
-
-#Principle
----
-&nbsp;영상처리의 과정에서 먼저 손의 이진 이미지를 얻음으로써 손을 인식할 수 있습니다. 좀 더 정확한 손의 이진 이미지를 얻기위해서 배경차 이미지, 추출한 피부색을 가지고 역투영을 해서 얻어낸 이진 이미지, 일반적인 피부색을 추출해내서 이진화 시킨 이미지를 모두 and 연산을 하여 결과를 얻어낸 후 마지막으로 닫힘연산을 합니다. 이렇게 해서 얻어낸 손의 이미지에서 윤곽선을 찾아내고 또 윤곽선에서 손 끝점들을 찾아냅니다. 이 손 끝점들의 움직임을 좌표로 저장하여 이것을 분석하여 어떤 움직임이 발생했는지 알 수 있게 됩니다.
-
-<img src="https://github.com/SerendipityFingerMotion/FingerMotion/blob/hyun13/KakaoTalk_20150625_082829928.png" width="200" height="200"><BR> <히스토그램에 대한 색 분포 이미지>
-
-<img src="https://github.com/SerendipityFingerMotion/FingerMotion/blob/hyun13/KakaoTalk_20150625_082829928.png" width="200" height="200"><BR> <일반적인 사람의 피부색으로 검출>
-
-<img src="https://github.com/SerendipityFingerMotion/FingerMotion/blob/hyun13/KakaoTalk_20150625_082842188.png" width="200" height="200"><BR> <배경과의 차이를 이용한 손 이미지 검출>
-
-<img src="https://github.com/SerendipityFingerMotion/# FingerMotion
----
-[FingerMotion](https://github.com/SerendipityFingerMotion/FingerMotion/)은 영상처리를 통해 사용자의 손을 인식하여 손가락의 움직임에 대한 패턴 인식을 하도록 도와주는 라이브러리입니다.
-
-
 #Principle
 ---
 &nbsp;영상처리의 과정에서 먼저 손의 이진 이미지를 얻음으로써 손을 인식할 수 있습니다. 좀 더 정확한 손의 이진 이미지를 얻기위해서 배경차 이미지를 얻습니다.
@@ -35,9 +18,6 @@
 
 
 &nbsp;이렇게 해서 얻어낸 손의 이미지에서 윤곽선을 찾아내고 또 윤곽선에서 손 끝점들을 찾아냅니다. 이 손 끝점들의 움직임을 좌표로 저장하여 이것을 분석하여 어떤 움직임이 발생했는지 알 수 있게 됩니다.
-
-
-
 
 
 &nbsp;손 끝점에서 하나를 기준점으로 잡은다음 이것의 움직임을 분석합니다. 움직인 점들을 이어 직선으로 만들고 이 직선의 각도를 측정해서 직선이 어느 방향을 가리키는지 계산하여 저장해 둡니다. 그리고 다음 이 과정을 반복하면서 바로 이전의 결과와 비교를 합니다.
