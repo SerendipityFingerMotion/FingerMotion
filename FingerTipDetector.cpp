@@ -58,6 +58,7 @@ void FingerTipDetector::programRun(){
 				start = true;
 			}
 			else{
+				//주석 추가
 				patternStart = false;
 				//start = false;
 			}
