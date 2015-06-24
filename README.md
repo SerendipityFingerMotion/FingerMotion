@@ -17,12 +17,12 @@ OpenCV를 [http://opencv.org/downloads.html](http://opencv.org/downloads.html)�
 3. Visual Studio의 프로젝트 속성 > 구성 속성 > VC++ 디렉터리 > 라이브러리 디렉터리에 라이브러리 경로명 추가
     - ex) C드라이브에 OpenCV가 설치된 경우의 라이브러리 경로명 => C:\opencv\build\x86\vc11\lib
 
-4. Visual Studio의 프로젝트 속성 > 구성 속성 > 링커 > 입력 > 추가 종속성에 dll 파일들 추가
+4. Visual Studio의 프로젝트 속성 > 구성 속성 > 링커 > 입력 > 추가 종속성에 lib 파일들 추가
     - ex)<BR>opencv_core2411d.lib<BR>opencv_imgproc2411d.lib<BR>opencv_highgui2411d.lib<BR>opencv_ml2411d.lib<BR>opencv_video2411d.lib<BR>opencv_features2d2411d.lib<BR>opencv_calib3d2411d.lib<BR>opencv_objdetect2411d.lib<BR>opencv_contrib2411d.lib<BR>opencv_legacy2411d.lib<BR>opencv_flann2411d.lib
 
 #Usage
 ---
-사용자의 피부색을 추출하도록 원안에 대고 엔터를 누르신 후에 ....
+사용자의 피부색을 추출하도록 초록색 원안에 대고 엔터를 누르신 후에, 스페이스를 눌러서 패턴 등록을 시작하고 또 스페이스를 눌러 등록을 완료합니다. 그리고 1번 키를 눌러서 패턴 인식 확인을 시작하고, 또 1번 키를 눌러 패턴 인식 확인을 완료합니다.
 #Documentation
 ---
 [API 문서 참조](https://github.com/SerendipityFingerMotion/FingerMotion/blob/hyun13/api_v1.pdf)
