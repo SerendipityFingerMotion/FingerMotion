@@ -55,3 +55,8 @@ OpenCV를 [http://opencv.org/downloads.html](http://opencv.org/downloads.html)�
 * 팀원 강진혁 [(jhKang1313)] [2]
 * 팀원 이재호 [(jaehos)][3]
 * 팀원 윤성민 [(sungmin7465)][4]
+
+[1]: https://github.com/leehyun13
+[2]: https://github.com/jhKang1313
+[3]: https://github.com/jaehos
+[4]: https://github.com/sungmin7465
